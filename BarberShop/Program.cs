@@ -17,6 +17,11 @@ public class Program
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
         builder.Services.AddAuthentication()
+            .AddGoogle(options =>
+            {
+                options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            })
             .AddMicrosoftAccount(options =>
             {
                 options.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
